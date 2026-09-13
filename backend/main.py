@@ -6,6 +6,7 @@ import os
 from l0_inventory import collect_inventory
 from l1_monitoring import collect_metrics
 from l2_explanation import collect_explanations
+from l3_recommendation import collect_recommendations
 
 app = FastAPI(
     title="Media Server LORM",
@@ -36,6 +37,10 @@ def monitor():
 @app.get("/api/explain")
 def explain():
     return collect_explanations()
+
+@app.get("/api/recommend")
+def recommend():
+    return collect_recommendations()
 
 frontend_path = os.path.join(os.path.dirname(__file__), "..", "frontend")
 if os.path.isdir(frontend_path):
