@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Server LORM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Media Server LORM</h1>
+        <p>Система поддержки принятия решений</p>
+    </header>
+
+    <main>
+        <section id="health">
+            <h2>Статус</h2>
+            <div id="health-status">Загрузка...</div>
+        </section>
+
+        <section id="inventory">
+            <h2>L0 — Инвентаризация</h2>
+            <button onclick="loadInventory()">Обновить</button>
+            <pre id="inventory-output">Нажми «Обновить»</pre>
+        </section>
+
+        <section id="monitor">
+            <h2>L1 — Мониторинг</h2>
+            <button onclick="loadMonitor()">Обновить</button>
+            <pre id="monitor-output">Нажми «Обновить»</pre>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
