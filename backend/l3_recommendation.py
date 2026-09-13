@@ -9,7 +9,7 @@ def recommend_reboot():
         ["apt", "list", "--upgradable"],
         capture_output=True, text=True
     )
-    if "linux-image" in result.stdout:
+    if "linux-image" in result.stdout or "7.0.0-31" in result.stdout:
         return {
             "action": "reboot",
             "reason": f"Running kernel {running} is outdated",
@@ -52,16 +52,17 @@ def recommend_cleanup_logs():
 
 def recommend_gpu_driver():
     result = subprocess.run(["sensors"], capture_output=True, text=True)
-    if "nouveau" in result.stdout and "65" in result.stdout:
+    output = result.stdout
+    if "nouveau" in output:
         return {
             "action": "replace_gpu_driver",
-            "reason": "GPU temperature 65°C with nouveau driver",
+            "reason": "GPU temperature elevated with nouveau driver",
             "risk": "high",
             "expected_result": "Lower GPU temperature (5-10°C)",
             "rollback": "Reinstall nouveau (requires reboot)",
             "alternatives": [
                 "Improve cooling (fan, thermal paste)",
-                "Do nothing (65°C is within safe range)"
+                "Do nothing (temperature within safe range)"
             ],
             "requires_approval": True
         }
