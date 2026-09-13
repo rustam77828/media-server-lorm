@@ -37,6 +37,18 @@ async function loadMonitor() {
     }
 }
 
+async function loadExplain() {
+    const el = document.getElementById("explain-output");
+    el.textContent = "Загрузка...";
+    try {
+        const response = await fetch(`${API_BASE}/api/explain`);
+        const data = await response.json();
+        el.textContent = JSON.stringify(data, null, 2);
+    } catch (error) {
+        el.textContent = `Ошибка: ${error.message}`;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     checkHealth();
     setInterval(checkHealth, 30000);
