@@ -1,13 +1,13 @@
 # Скриншоты
 
-## Главный дашборд
+## Главный дашборд (верх)
 ![Dashboard](01-dashboard.png)
 
-## Swagger UI
-![Swagger](02-swagger.png)
+## Главный дашборд (низ)
+![Dashboard bottom](02-dashboard-bottom.png)
 
-## L0 — Инвентаризация
-![L0](03-l0-inventory.png)
+## Swagger UI
+![Swagger](03-swagger.png)
 
 ## L1 — Мониторинг
 ![L1](04-l1-monitor.png)
