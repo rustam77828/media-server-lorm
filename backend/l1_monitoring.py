@@ -38,9 +38,11 @@ def get_boot_history():
 
 def get_auth_log():
     result = subprocess.run(
-        ["sudo", "tail", "-20", "/var/log/auth.log"],
+        ["tail", "-20", "/var/log/auth.log"],
         capture_output=True, text=True
     )
+    if result.returncode != 0:
+        return "auth.log not readable (permission denied)"
     return result.stdout
 
 def collect_metrics():
