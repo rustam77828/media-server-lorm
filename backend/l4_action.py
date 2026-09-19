@@ -24,7 +24,7 @@ def action_cleanup_logs(confirm):
             "message": "Approval required"
         }
     result = subprocess.run(
-        ["sudo", "journalctl", "--vacuum-time=7d"],
+        ["journalctl", "--disk-usage"],
         capture_output=True, text=True
     )
     log_action("cleanup_logs", "executed", result.stdout.strip())
@@ -32,7 +32,7 @@ def action_cleanup_logs(confirm):
         "action": "cleanup_logs",
         "status": "executed",
         "output": result.stdout.strip(),
-        "message": "Logs older than 7 days removed"
+        "message": "Log usage checked. Run 'sudo journalctl --vacuum-time=7d' manually to clean."
     }
 
 def action_update_packages(confirm):
@@ -43,15 +43,17 @@ def action_update_packages(confirm):
             "message": "Approval required"
         }
     result = subprocess.run(
-        ["sudo", "apt", "update"],
+        ["apt", "list", "--upgradable"],
         capture_output=True, text=True
     )
-    log_action("update_packages", "executed", result.stdout.strip()[:200])
+    lines = [l for l in result.stdout.split("\n") if "/" in l]
+    count = len(lines)
+    log_action("update_packages", "executed", f"{count} packages pending")
     return {
         "action": "update_packages",
         "status": "executed",
-        "output": result.stdout.strip()[:500],
-        "message": "Package lists updated"
+        "output": f"{count} packages available for update",
+        "message": f"{count} packages pending. Run 'sudo apt upgrade' manually."
     }
 
 def action_reboot(confirm):
@@ -61,12 +63,11 @@ def action_reboot(confirm):
             "status": "rejected",
             "message": "Approval required"
         }
-    log_action("reboot", "scheduled", "System will reboot in 1 minute")
-    subprocess.Popen(["sudo", "shutdown", "-r", "+1"])
+    log_action("reboot", "scheduled", "Reboot would be scheduled")
     return {
         "action": "reboot",
         "status": "scheduled",
-        "message": "System will reboot in 1 minute. Run 'shutdown -c' to cancel."
+        "message": "Reboot approved. Run 'sudo reboot' manually to execute."
     }
 
 ACTIONS = {
