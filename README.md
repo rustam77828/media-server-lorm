@@ -42,3 +42,41 @@
 
 ```bash
 cp .env.example .env
+```
+
+Реальные IP-адреса и имена пользователей **не хранятся** в репозитории.
+
+## Запуск
+
+### Backend
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Frontend
+
+Открой `frontend/index.html` в браузере.
+
+### API документация
+
+После запуска backend открой:
+
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
+
+## Скриншоты
+
+Все скриншоты работы системы — в папке [docs/screenshots](docs/screenshots).
+
+### Главный дашборд
+![Dashboard](docs/screenshots/01-dashboard.png)
+
+### Swagger UI
+![Swagger](docs/screenshots/03-swagger.png)
+
+## Автор
+
+Rustam — [GitHub](https://github.com/rustam77828)
