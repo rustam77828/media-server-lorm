@@ -94,6 +94,30 @@ async function loadActionHistory() {
     }
 }
 
+async function loadPolicy() {
+    const el = document.getElementById("policy-output");
+    el.textContent = "Загрузка...";
+    try {
+        const response = await fetch(`${API_BASE}/api/policy`);
+        const data = await response.json();
+        el.textContent = JSON.stringify(data, null, 2);
+    } catch (error) {
+        el.textContent = `Ошибка: ${error.message}`;
+    }
+}
+
+async function loadPolicyEvents() {
+    const el = document.getElementById("policy-output");
+    el.textContent = "Загрузка...";
+    try {
+        const response = await fetch(`${API_BASE}/api/policy/events`);
+        const data = await response.json();
+        el.textContent = JSON.stringify(data, null, 2);
+    } catch (error) {
+        el.textContent = `Ошибка: ${error.message}`;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     checkHealth();
     setInterval(checkHealth, 30000);
