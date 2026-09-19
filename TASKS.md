@@ -76,7 +76,7 @@
 - [x] Эндпоинт `/api/explain` (L2)
 - [x] Эндпоинт `/api/recommend` (L3)
 - [ ] Эндпоинт `/api/action` (L4)
-- [ ] Эндпоинт `/api/policy` (L5)
+- [x] Эндпоинт `/api/policy` (L5)
 - [x] Написать `requirements.txt`
 - [x] Протестировать через `/docs`
 - [x] Закоммитить
