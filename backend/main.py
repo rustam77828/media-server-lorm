@@ -9,6 +9,7 @@ from l1_monitoring import collect_metrics
 from l2_explanation import collect_explanations
 from l3_recommendation import collect_recommendations
 from l4_action import execute_action, get_action_history
+from l5_policy import evaluate_policies, get_policy_events
 
 app = FastAPI(
     title="Media Server LORM",
@@ -55,6 +56,14 @@ def action(request: ActionRequest):
 @app.get("/api/actions/history")
 def actions_history():
     return {"history": get_action_history()}
+
+@app.get("/api/policy")
+def policy():
+    return evaluate_policies()
+
+@app.get("/api/policy/events")
+def policy_events():
+    return {"events": get_policy_events()}
 
 frontend_path = os.path.join(os.path.dirname(__file__), "..", "frontend")
 if os.path.isdir(frontend_path):
