@@ -31,36 +31,43 @@
         </section>
 
         <section id="explain">
-    <h2>L2 — Объяснения</h2>
-    <button onclick="loadExplain()">Обновить</button>
-    <pre id="explain-output">Нажми «Обновить»</pre>
-</section>
+            <h2>L2 — Объяснения</h2>
+            <button onclick="loadExplain()">Обновить</button>
+            <pre id="explain-output">Нажми «Обновить»</pre>
+        </section>
 
         <section id="recommend">
-    <h2>L3 — Рекомендации</h2>
-    <button onclick="loadRecommend()">Обновить</button>
-    <pre id="recommend-output">Нажми «Обновить»</pre>
-</section>
+            <h2>L3 — Рекомендации</h2>
+            <button onclick="loadRecommend()">Обновить</button>
+            <pre id="recommend-output">Нажми «Обновить»</pre>
+        </section>
 
         <section id="action">
-    <h2>L4 — Действия с одобрения</h2>
-    <div>
-        <select id="action-select">
-            <option value="cleanup_logs">Очистить логи (7 дней)</option>
-            <option value="update_packages">Обновить пакеты</option>
-            <option value="reboot">Перезагрузить сервер</option>
-        </select>
-    </div>
-    <div>
-        <label>
-            <input type="checkbox" id="action-confirm">
-            Подтверждаю выполнение
-        </label>
-    </div>
-    <button onclick="executeAction()">Выполнить</button>
-    <button onclick="loadActionHistory()">История</button>
-    <pre id="action-output">Выбери действие и подтверди</pre>
-</section>
+            <h2>L4 — Действия с одобрения</h2>
+            <div>
+                <select id="action-select">
+                    <option value="cleanup_logs">Очистить логи (7 дней)</option>
+                    <option value="update_packages">Обновить пакеты</option>
+                    <option value="reboot">Перезагрузить сервер</option>
+                </select>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" id="action-confirm">
+                    Подтверждаю выполнение
+                </label>
+            </div>
+            <button onclick="executeAction()">Выполнить</button>
+            <button onclick="loadActionHistory()">История</button>
+            <pre id="action-output">Выбери действие и подтверди</pre>
+        </section>
+
+        <section id="policy">
+            <h2>L5 — Автономные политики</h2>
+            <button onclick="loadPolicy()">Проверить политики</button>
+            <button onclick="loadPolicyEvents()">История срабатываний</button>
+            <pre id="policy-output">Нажми «Проверить политики»</pre>
+        </section>
     </main>
 
     <script src="script.js"></script>
